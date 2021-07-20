@@ -1,0 +1,174 @@
+
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- Favicons -->
+
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    
+  </head>
+  <body class="d-flex flex-column h-100">
+ <div id="app">   
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+	  <img class="logo" src="image/logo-white.svg" alt="Logo white">
+	  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+		  <a :href="urlLinkedin" class="btn btn-outline-primary"  target="black">Luis Ignacio Zamora V.</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Begin page content -->
+
+  
+ <div class="container">
+ <div class="alert alert-warning" role="alert">
+     <h1 class="mt-5">{{ message }}</h1>
+</div> 
+  
+  <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Entrada</label>
+  <input v-model="stringEntrada"  class="form-control" placeholder="edit me">
+</div>
+<div class="mb-3">
+<div class="d-grid gap-2">
+	<button v-on:click="tranformarToSha256" class="btn btn-primary btn-sm">Tranformar a sha256</button>
+</div>
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">resultado</label>
+  <textarea class="form-control" v-model="stringSalida" rows="3"></textarea>
+</div>	
+
+<h1 v-if="resultado">
+ <div class="alert alert-success" role="alert">
+     <h1 class="mt-5">El string contiene la palabra b00da</h1>
+</div> 
+</h1>
+<h1 v-else>
+ <div class="alert alert-danger" role="alert">
+     <h1 class="mt-5">El string NO contiene la palabra b00da</h1>
+</div> 
+</h1>
+
+
+
+</div>
+</div>	
+		
+
+
+
+
+
+
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <span class="text-muted">
+	<strong>Buda.com SpA</strong> y sus empresas filiales no son entidades reguladas ante el regulador financiero local. 
+	Sin perjuicio de lo anterior, mantenemos estándares de cumplimiento normativo basados en la regulación vigente en cada país que operamos, y estamos sujetos a la legislación pertinente en matería de protección de derechos del consumidor, tratamiento de datos e información privada y obligaciones tributarias, entre otras.
+Te invitamos a ser parte de esta revolución tecnológica de manera responsable e informada, y a consultar con nosotros cualquier duda que tengas en soporte@buda.com
+	
+	</span>
+  </div>
+</footer>
+    <script src="js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>  
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Un string que, al aplicarle la función sha256, el string resultante contenga el substring “b00da”.',
+	stringEntrada:'DPELUN6Y34',
+	stringSalida:'',
+	urlLinkedin: 'https://www.linkedin.com/in/luis-ignacio-zamora-villagra-b85a6944/',
+	resultado : ''
+	
+  },
+  methods: {
+	linkedinUrl: function (){
+			this.$router.push('');
+	},
+  
+    tranformarToSha256: function () {	
+		const response = CryptoJS.SHA256(this.stringEntrada);
+		let termino = "b00da";
+	
+		this.stringSalida = response;
+			
+		result = response.toString().includes(termino);
+
+		this.resultado = result	;
+		
+		
+		
+		<!-- let r = Math.random().toString(36).substring(7); -->
+		<!-- console.log("random", r); -->
+		
+
+    }
+  }
+})
+</script>  
+
+
+	
+  </body>
+</html>
